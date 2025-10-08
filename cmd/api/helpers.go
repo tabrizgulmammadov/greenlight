@@ -139,7 +139,7 @@ func (app *application) background(fn func()) {
 
 	go func() {
 		defer app.wg.Done()
-		
+
 		defer func() {
 			pv := recover()
 			if pv != nil {
