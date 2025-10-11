@@ -27,13 +27,16 @@ help:
 .PHONY: confirm
 confirm:
 	@powershell -Command "$$ans = Read-Host 'Are you sure? [y/N]'; if ($$ans -ne 'y') { exit 1 }"
-#@echo -n 'Are you sure? [y/N] ' && read ans && [ $${ans:-N} = y ]
+
+.PHONY: confirm/linux
+confirm/linux:
+	@echo -n 'Are you sure? [y/N] ' && read ans && [ $${ans:-N} = y ]
 
 ## run/api: run the cmd/api application
 .PHONY: run/api
 run/api:
 	@echo 'Starting API...'
-	go run ./cmd/api -db-dsn=${GREENLIGHT_DB_DSN}
+	go run ./cmd/api -db-dsn=${GREENLIGHT_DB_DSN} -jwt-secret=${JWT_SECRET}
 
 ## db/migrations/new name=$1: create a new database migration
 .PHONY: db/migrations/new
@@ -86,4 +89,10 @@ build/api:
 	@echo Building for Linux...
 	@if not exist bin\linux_amd64 mkdir bin\linux_amd64
 	set GOOS=linux&set GOARCH=amd64&go build -ldflags="-s" -o=bin/linux_amd64/api.exe ./cmd/api
-#GOOS=linux GOARCH=amd64 go build -ldflags='-s' -o=./bin/linux_amd64/api ./cmd/api
+
+
+.PHONY: build/api/linux
+build/api/linux:
+	@echo 'Building cmd/api...'
+    go build -ldflags='-s' -o=./bin/api ./cmd/api
+    GOOS=linux GOARCH=amd64 go build -ldflags='-s' -o=./bin/linux_amd64/api ./cmd/api
