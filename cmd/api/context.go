@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/http"
 
-	"greenlight.tabriz.gulmammadov.net/internal/data"
+	"tabriz-gulmammadov.net/greenlight/internal/data"
 )
 
 type contextKey string

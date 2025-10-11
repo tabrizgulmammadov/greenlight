@@ -18,7 +18,6 @@ help:
 	      '{0,-28} {1}' -f $$matches[1], $$matches[2] \
 	    } \
 	  }"
-#@sed -n 's/^##//p' ${MAKEFILE_LIST} | column -t -s ':' | sed -e 's/^/ /'
 
 # ==================================================================================== #
 # DEVELOPMENT
@@ -35,19 +34,19 @@ confirm/linux:
 ## run/api: run the cmd/api application
 .PHONY: run/api
 run/api:
-	@echo 'Starting API...'
+	@echo Starting API...
 	go run ./cmd/api -db-dsn=${GREENLIGHT_DB_DSN} -jwt-secret=${JWT_SECRET}
 
 ## db/migrations/new name=$1: create a new database migration
 .PHONY: db/migrations/new
 db/migrations/new:
-	@echo 'Creating migration files for ${name}...'
+	@echo Creating migration files for ${name}...
 	migrate create -seq -ext .sql -dir ./migrations ${name}
 
 ## db/migrations/up: apply all up database migrations
 .PHONY: db/migrations/up
 db/migrations/up: confirm
-	@echo 'Running up migrations...'
+	@echo Running up migrations...
 	migrate -path ./migrations -database ${GREENLIGHT_DB_DSN} up
 
 # ==================================================================================== #
@@ -57,24 +56,24 @@ db/migrations/up: confirm
 ## tidy: tidy and vendor module dependencies, and format all .go files
 .PHONY: tidy
 tidy:
-	@echo 'Tidying module dependencies...'
+	@echo Tidying module dependencies...
 	go mod tidy
-	@echo 'Verifying and vendoring module dependencies...'
+	@echo Verifying and vendoring module dependencies...
 	go mod verify
 	go mod vendor
-	@echo 'Formatting .go files...'
+	@echo Formatting .go files...
 	go fmt ./...
 
 ## audit: run quality control checks
 .PHONY: audit
 audit:
-	@echo 'Checking module dependencies...'
+	@echo Checking module dependencies...
 	go mod tidy -diff
 	go mod verify
-	@echo 'Vetting code...'
+	@echo Vetting code...
 	go vet ./...
-	go tool staticcheck ./...
-	@echo 'Running tests...'
+	staticcheck ./...
+	@echo Running tests...
 	go test -race -vet=off ./...
 
 # ==================================================================================== #
@@ -88,11 +87,17 @@ build/api:
 	go build -ldflags="-s" -o=bin/api.exe ./cmd/api
 	@echo Building for Linux...
 	@if not exist bin\linux_amd64 mkdir bin\linux_amd64
-	set GOOS=linux&set GOARCH=amd64&go build -ldflags="-s" -o=bin/linux_amd64/api.exe ./cmd/api
+	@cmd /c "set GOOS=linux&& set GOARCH=amd64&& go build -ldflags=-s -o=bin/linux_amd64/api ./cmd/api"
 
-
+## build/api/linux: build the cmd/api application for Linux only
 .PHONY: build/api/linux
 build/api/linux:
-	@echo 'Building cmd/api...'
-    go build -ldflags='-s' -o=./bin/api ./cmd/api
-    GOOS=linux GOARCH=amd64 go build -ldflags='-s' -o=./bin/linux_amd64/api ./cmd/api
+	@echo Building for Linux...
+	@if not exist bin\linux_amd64 mkdir bin\linux_amd64
+	@cmd /c "set GOOS=linux&& set GOARCH=amd64&& go build -ldflags=-s -o=bin/linux_amd64/api ./cmd/api"
+
+## build/api/windows: build the cmd/api application for Windows only
+.PHONY: build/api/windows
+build/api/windows:
+	@echo Building for Windows...
+	go build -ldflags="-s" -o=bin/api.exe ./cmd/api

@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	"greenlight.tabriz.gulmammadov.net/internal/data"
-	"greenlight.tabriz.gulmammadov.net/internal/validator"
+	"tabriz-gulmammadov.net/greenlight/internal/data"
+	"tabriz-gulmammadov.net/greenlight/internal/validator"
 )
 
 func (app *application) registerUserHandler(w http.ResponseWriter, r *http.Request) {

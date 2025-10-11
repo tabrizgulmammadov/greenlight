@@ -3,7 +3,7 @@ package data
 import (
 	"strings"
 
-	"greenlight.tabriz.gulmammadov.net/internal/validator"
+	"tabriz-gulmammadov.net/greenlight/internal/validator"
 )
 
 type Filters struct {
