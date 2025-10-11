@@ -14,9 +14,9 @@ import (
 	"time"
 
 	_ "github.com/lib/pq"
-	"greenlight.tabriz.gulmammadov.net/internal/data"
-	"greenlight.tabriz.gulmammadov.net/internal/mailer"
-	"greenlight.tabriz.gulmammadov.net/internal/vcs"
+	"tabriz-gulmammadov.net/greenlight/internal/data"
+	"tabriz-gulmammadov.net/greenlight/internal/mailer"
+	"tabriz-gulmammadov.net/greenlight/internal/vcs"
 )
 
 var (

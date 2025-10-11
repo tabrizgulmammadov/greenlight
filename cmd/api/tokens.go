@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/pascaldekloe/jwt"
-	"greenlight.tabriz.gulmammadov.net/internal/data"
-	"greenlight.tabriz.gulmammadov.net/internal/validator"
+	"tabriz-gulmammadov.net/greenlight/internal/data"
+	"tabriz-gulmammadov.net/greenlight/internal/validator"
 )
 
 func (app *application) createAuthenticationTokenHandler(w http.ResponseWriter, r *http.Request) {
@@ -60,8 +60,8 @@ func (app *application) createAuthenticationTokenHandler(w http.ResponseWriter, 
 	claims.Issued = jwt.NewNumericTime(time.Now())
 	claims.NotBefore = jwt.NewNumericTime(time.Now())
 	claims.Expires = jwt.NewNumericTime(time.Now().Add(24 * time.Hour))
-	claims.Issuer = "greenlight.tabriz.gulmammadov.net"
-	claims.Audiences = []string{"greenlight.tabriz.gulmammadov.net"}
+	claims.Issuer = "tabriz-gulmammadov.net/greenlight"
+	claims.Audiences = []string{"tabriz-gulmammadov.net/greenlight"}
 
 	jwtBytes, err := claims.HMACSign(jwt.HS256, []byte(app.config.jwt.secret))
 	if err != nil {
