@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"golang.org/x/crypto/bcrypt"
-	"github.com/tabrizgulmammadov/learn-go-with-tests/internal/validator"
+	"github.com/tabrizgulmammadov/greenlight/internal/validator"
 )
 
 var (
