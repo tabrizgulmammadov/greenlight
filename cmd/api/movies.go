@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"tabriz-gulmammadov.net/greenlight/internal/data"
-	"tabriz-gulmammadov.net/greenlight/internal/validator"
+	"github.com/tabrizgulmammadov/learn-go-with-tests/internal/data"
+	"github.com/tabrizgulmammadov/learn-go-with-tests/internal/validator"
 )
 
 func (app *application) createMovieHandler(w http.ResponseWriter, r *http.Request) {

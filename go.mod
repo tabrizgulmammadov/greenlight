@@ -1,4 +1,4 @@
-module tabriz-gulmammadov.net/greenlight
+module github.com/tabrizgulmammadov/learn-go-with-tests
 
 go 1.25.0
 

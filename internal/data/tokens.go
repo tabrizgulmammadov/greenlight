@@ -7,7 +7,7 @@ import (
 	"database/sql"
 	"time"
 
-	"tabriz-gulmammadov.net/greenlight/internal/validator"
+	"github.com/tabrizgulmammadov/learn-go-with-tests/internal/validator"
 )
 
 const (
