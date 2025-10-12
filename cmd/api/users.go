@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/tabrizgulmammadov/learn-go-with-tests/internal/data"
-	"github.com/tabrizgulmammadov/learn-go-with-tests/internal/validator"
+	"github.com/tabrizgulmammadov/greenlight/internal/data"
+	"github.com/tabrizgulmammadov/greenlight/internal/validator"
 )
 
 func (app *application) registerUserHandler(w http.ResponseWriter, r *http.Request) {

@@ -3,7 +3,7 @@ package data
 import (
 	"strings"
 
-	"github.com/tabrizgulmammadov/learn-go-with-tests/internal/validator"
+	"github.com/tabrizgulmammadov/greenlight/internal/validator"
 )
 
 type Filters struct {

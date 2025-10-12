@@ -11,7 +11,7 @@ import (
 	"strings"
 
 	"github.com/julienschmidt/httprouter"
-	"github.com/tabrizgulmammadov/learn-go-with-tests/internal/validator"
+	"github.com/tabrizgulmammadov/greenlight/internal/validator"
 )
 
 func (app *application) readIDParam(r *http.Request) (int64, error) {

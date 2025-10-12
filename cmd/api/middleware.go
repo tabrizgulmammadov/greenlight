@@ -13,8 +13,8 @@ import (
 	"github.com/pascaldekloe/jwt"
 	"github.com/tomasen/realip"
 	"golang.org/x/time/rate"
-	"github.com/tabrizgulmammadov/learn-go-with-tests/internal/data"
-	"github.com/tabrizgulmammadov/learn-go-with-tests/internal/validator"
+	"github.com/tabrizgulmammadov/greenlight/internal/data"
+	"github.com/tabrizgulmammadov/greenlight/internal/validator"
 )
 
 func (app *application) recoverPanic(next http.Handler) http.Handler {
@@ -118,12 +118,12 @@ func (app *application) authenticate(next http.Handler) http.Handler {
 			return
 		}
 
-		if claims.Issuer != "github.com/tabrizgulmammadov/learn-go-with-tests" {
+		if claims.Issuer != "github.com/tabrizgulmammadov/greenlight" {
 			app.invalidAuthenticationTokenResponse(w, r)
 			return
 		}
 
-		if !claims.AcceptAudience("github.com/tabrizgulmammadov/learn-go-with-tests") {
+		if !claims.AcceptAudience("github.com/tabrizgulmammadov/greenlight") {
 			app.invalidAuthenticationTokenResponse(w, r)
 			return
 		}

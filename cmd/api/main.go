@@ -14,9 +14,9 @@ import (
 	"time"
 
 	_ "github.com/lib/pq"
-	"github.com/tabrizgulmammadov/learn-go-with-tests/internal/data"
-	"github.com/tabrizgulmammadov/learn-go-with-tests/internal/mailer"
-	"github.com/tabrizgulmammadov/learn-go-with-tests/internal/vcs"
+	"github.com/tabrizgulmammadov/greenlight/internal/data"
+	"github.com/tabrizgulmammadov/greenlight/internal/mailer"
+	"github.com/tabrizgulmammadov/greenlight/internal/vcs"
 )
 
 var (
