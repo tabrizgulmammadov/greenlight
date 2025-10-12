@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/http"
 
-	"tabriz-gulmammadov.net/greenlight/internal/data"
+	"github.com/tabrizgulmammadov/learn-go-with-tests/internal/data"
 )
 
 type contextKey string
